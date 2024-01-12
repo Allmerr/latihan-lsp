@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('mengajars', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('guru_id');
+            $table->foreign('guru_id')->references('id')->on('guru');
+            $table->unsignedInteger('mapel_id');
+            $table->foreign('mapel_id')->references('id')->on('mapel');
             $table->unsignedInteger('kelas_id');
-            $table->foreign('kelas_id')->references('id')->on('');    
+            $table->foreign('kelas_id')->references('id')->on('kelas');    
             $table->timestamps();
         });
     }

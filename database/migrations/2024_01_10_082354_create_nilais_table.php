@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedInteger('siswa_id');
             $table->foreign('siswa_id')->references('id')->on('siswa');
             $table->double('uh');
-            
+            $table->double('uts');
+            $table->double('uas');
+            $table->double('na');
             $table->timestamps();
         });
     }

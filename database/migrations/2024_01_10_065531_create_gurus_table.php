@@ -18,7 +18,7 @@ return new class extends Migration
 		$table->enum('jk', ['L', 'P']);
 		$table->text('alamat');
 		$table->string('password');
-            	$table->timestamps();
+        $table->timestamps();
         });
     }
 

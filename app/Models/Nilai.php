@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Nilai extends Model
 {
     use HasFactory;
+
+    public function guru(){
+        return $this->belongsTo(Guru::class);
+    }
+
+    public function mapel(){
+        return $this->belongsTo(Mapel::class);
+    }
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class);
+    }
 }

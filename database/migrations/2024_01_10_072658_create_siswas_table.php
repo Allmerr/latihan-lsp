@@ -18,7 +18,7 @@ return new class extends Migration
 		$table->enum('jk', ['L', 'P']);
 		$table->text('alamat');
 		$table->unsignedInteger('kelas_id');
-        $table->foreign('kelas_id')->references('id')->on('');
+        $table->foreign('kelas_id')->references('id')->on('kelas');
 		$table->string('password');
         $table->timestamps();
         });
