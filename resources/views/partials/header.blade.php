@@ -5,7 +5,7 @@
     <div class="row">
         <ul class="header__list">
             <li class="header__list-item">
-                <a href="{{ route('home') }}" class="header__list-content">Home</a>
+                <a href="{{ route('welcome') }}" class="header__list-content">Home</a>
             </li>
         </ul>
     </div>
