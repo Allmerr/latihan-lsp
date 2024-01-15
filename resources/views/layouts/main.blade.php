@@ -16,5 +16,6 @@
         </div>
         @include('partials.footer')
     </div>
+@stack('js')
 </body>
 </html>

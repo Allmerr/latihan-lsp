@@ -14,6 +14,14 @@
         display: flex;
     }
 
+    .justify-content-right{
+        justify-content: right;
+    }
+
+    .align-items-center{
+        align-items: center;
+    }
+
     .border-black{
         border: solid 1px rgba(128, 128, 128, 0.418);
     }
@@ -32,13 +40,13 @@
         padding: 10px;
         background: #02A8A0;
         border-radius: 15px;
-        
+
     }
 
     .width-100{
         width: 100%;
     }
-    
+
     .p3{
         padding: 30px;
     }
@@ -90,6 +98,44 @@
     .hello-page{
         color: white;
     }
+
+    .form-control{
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    .form-login{
+        padding: 10px;
+    }
+
+    .mb-2{
+        margin-bottom: 20px;
+    }
+
+    .mb-3{
+        margin-bottom: 20px;
+    }
+
+    .btn{
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        border-radius: 0.375rem;
+    }
+
+    .btn--primary{
+        color: white;
+        background: #02A8A0;
+    }
+
+    .d-none{
+        display: none;
+    }
+
 </style>
 @endpush
 
@@ -102,28 +148,72 @@
                     <hr>
                     <ul class="d-flex login-navs__list">
                         <li class="login-navs__item">
-                            <a href="" class="login-navs__item-content" >Siswa</a>    
-                        </li>    
-                        <li class="login-navs__item">
-                            <a href="" class="login-navs__item-content" >Guru</a>
+                            <a href="" class="login-navs__item-content login-navs__item-content--click-siswa" >Siswa</a>
                         </li>
                         <li class="login-navs__item">
-                            <a href="" class="login-navs__item-content" >Admin</a>    
+                            <a href="" class="login-navs__item-content login-navs__item-content--click-guru" >Guru</a>
                         </li>
-                    </ul>    
+                        <li class="login-navs__item">
+                            <a href="" class="login-navs__item-content login-navs__item-content--click-admin" >Admin</a>
+                        </li>
+                    </ul>
                 </div>
                 <hr>
                 <div class="login-body">
-                    <form action="">
-                        <h2>Login Admin</h2>
-                        <input type="text">    
-                    </form>    
+                    <div class="login-siswa">
+                        <form action="" class="form-login">
+                            <h2 class="text-center mb-2">Login Siswa</h2>
+                            <div class="mb-3">
+                                <label for="nis">NIS</label>
+                                <input type="text" name="nis" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="passwprd">Password</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+                            <div class="d-flex justify-content-right">
+                                <button class="btn btn--primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="login-guru d-none">
+                        <form action="" class="form-login">
+                            <h2 class="text-center mb-2">Login Guru</h2>
+                            <div class="mb-3">
+                                <label for="id">NIP</label>
+                                <input type="text" name="nip" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+                            <div class="d-flex justify-content-right">
+                                <button class="btn btn--primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="login-admin d-none">
+                        <form action="" class="form-login">
+                            <h2 class="text-center mb-2">Login Admin</h2>
+                            <div class="mb-3">
+                                <label for="id">ID Admin</label>
+                                <input type="text" name="id" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control">
+                            </div>
+                            <div class="d-flex justify-content-right">
+                                <button class="btn btn--primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <hr>
                 <div class="login-gallery p1 ">
                     <h3 class="p1">Gallery</h3>
-                    <img src="{{ asset('images/login-gallery.jpeg') }}" alt="" class="width-100 img-thumbnail">    
-                </div>  
+                    <img src="{{ asset('images/login-gallery.jpeg') }}" alt="" class="width-100 img-thumbnail">
+                </div>
                 <div class="login-footer text-center bg-white m1 rounded">
                     <h2 class="p1">SMK BISA</h2>
                 </div>
@@ -131,6 +221,34 @@
         </div>
         <div class="d-flex__col-6 p2 hello-page">
             <h1 class="text-center">Selamat Datang  di website penilaian siswa SMKN 1 Cibinong</h1>
-        </div>       
+        </div>
     </div>
+@push('js')
+<script>
+    uPreventLoginNavs = function(){
+        allNavsItems = document.querySelectorAll('.login-body > *');
+        allNavsItems.forEach(function(e){
+            e.classList.add('d-none')
+        })
+    }
+
+    document.querySelector('.login-navs__item-content--click-siswa').addEventListener('click', function(e){
+        e.preventDefault();
+        uPreventLoginNavs()
+        document.querySelector('.login-siswa').classList.toggle('d-none');
+    })
+
+    document.querySelector('.login-navs__item-content--click-guru').addEventListener('click', function(e){
+        e.preventDefault();
+        uPreventLoginNavs();
+        document.querySelector('.login-guru').classList.toggle('d-none');
+    })
+
+    document.querySelector('.login-navs__item-content--click-admin').addEventListener('click', function(e){
+        e.preventDefault();
+        uPreventLoginNavs();
+        document.querySelector('.login-admin').classList.toggle('d-none');
+    })
+</script>
+@endpush
 @endsection
