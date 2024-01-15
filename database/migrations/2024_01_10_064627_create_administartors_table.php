@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('id_admin');
             $table->string('password');
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }

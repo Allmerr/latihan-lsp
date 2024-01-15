@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Kelas;
 
 return new class extends Migration
 {
@@ -12,15 +13,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('siswas', function (Blueprint $table) {
-		$table->id();
-		$table->string('nis')->unique();
-		$table->string('nama_siswa');
-		$table->enum('jk', ['L', 'P']);
-		$table->text('alamat');
-		$table->unsignedInteger('kelas_id');
-        $table->foreign('kelas_id')->references('id')->on('kelas');
-		$table->string('password');
-        $table->timestamps();
+            $table->id();
+            $table->string('nis')->unique();
+            $table->string('nama_siswa');
+            $table->enum('jk', ['L', 'P']);
+            $table->text('alamat');
+            $table->foreignIdFor(Kelas::class);
+            $table->string('password');
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
+            $table->timestamps();
         });
     }
 

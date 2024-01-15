@@ -3,6 +3,9 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Guru;
+use App\Models\Mapel;
+use App\Models\Kelas;
 
 return new class extends Migration
 {
@@ -13,12 +16,10 @@ return new class extends Migration
     {
         Schema::create('mengajars', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('guru_id');
-            $table->foreign('guru_id')->references('id')->on('guru');
-            $table->unsignedInteger('mapel_id');
-            $table->foreign('mapel_id')->references('id')->on('mapel');
-            $table->unsignedInteger('kelas_id');
-            $table->foreign('kelas_id')->references('id')->on('kelas');    
+            $table->foreignIdFor(Guru::class);
+            $table->foreignIdFor(Mapel::class);
+            $table->foreignIdFor(Kelas::class);
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }

@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Mengajar;
+use App\Models\Siswa;
 
 return new class extends Migration
 {
@@ -13,14 +15,13 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('mengajar_id');
-            $table->foreign('mengajar_id')->references('id')->on('mengajar');
-            $table->unsignedInteger('siswa_id');
-            $table->foreign('siswa_id')->references('id')->on('siswa');
+            $table->foreignIdFor(Mengajar::class);
+            $table->foreignIdFor(Siswa::class);
             $table->double('uh');
             $table->double('uts');
             $table->double('uas');
             $table->double('na');
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }
