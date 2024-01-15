@@ -21,10 +21,10 @@ body{
 .footer{
     text-align: center;
     background: #313131;
-    padding: 10px;
     color: #fff;
     position: absolute;
-    bottom: 0;
+    bottom: -40px;
+    height: 40px;
     width: 100%;
 }
 
@@ -46,4 +46,8 @@ body{
 .header__list{
     background: rgb(0, 1, 88, 1);
     list-style-type: none;
+}
+
+.content{
+    position: absolute;
 }

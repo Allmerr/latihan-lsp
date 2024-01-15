@@ -1,4 +1,4 @@
-<header>
+<header class="header">
     <div class="row">
         <img src="{{ asset('images/header.jpeg') }}" alt="" class="header__image">
     </div>
