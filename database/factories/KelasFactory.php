@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Services\FactoryService;
 use Illuminate\Support\Str;
-
+use App\Models\Kelas;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -19,10 +19,18 @@ class KelasFactory extends Factory
      */
     public function definition(): array
     {
+        do {
+            $kelas = $this->faker->randomElement(['10', '11', '12', '13']);
+            $jurusan = $this->faker->randomElement(['DKV', 'BKP', 'DPIB', 'RPL', 'SIJA', 'TKJ', 'TP', 'TOI', 'TKR', 'TFLM']);
+            $rombel = $this->faker->randomElement(['1', '2', '3', '4']);
+            $nama_kelas = $kelas .  '_'. $jurusan . '_' . $rombel;
+        } while (Kelas::where('nama_kelas', $nama_kelas)->exists());
+
         return [
-            'kelas' => fake()->randomElement(['10', '11', '12', '13']),
-            'jurusan' => fake()->randomElement(['DKV', 'BKP', 'DPIB', 'RPL', 'SIJA', 'TKJ', 'TP', 'TOI', 'TKR', 'TFLM']),
-            'rombel' => fake()->randomElement(['1', '2', '3', '4']),
+            'kelas' => $kelas,
+            'jurusan' => $jurusan,
+            'rombel' => $rombel,
+            'nama_kelas' => $nama_kelas,
         ];
     }
 }

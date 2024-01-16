@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\KelasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::get('/home', function() {
 
 Route::resource('/guru', GuruController::class)->middleware('checkRole');
 Route::resource('/mapel', MapelController::class)->middleware('checkRole');
+Route::resource('/kelas', KelasController::class)->middleware('checkRole');

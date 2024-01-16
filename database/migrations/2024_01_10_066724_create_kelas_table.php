@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum('kelas', ['10', '11', '12', '13']);
             $table->enum('jurusan', ['DKV', 'BKP', 'DPIB', 'RPL', 'SIJA', 'TKJ', 'TP', 'TOI', 'TKR', 'TFLM']);
             $table->enum('rombel', ['1', '2', '3', '4']);
+            $table->string('nama_kelas');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
