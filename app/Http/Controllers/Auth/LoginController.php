@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
+use App\Models\Administrator;
 use App\Models\Siswa;
 use App\Models\Guru;
 
@@ -14,7 +14,7 @@ class LoginController extends Controller
 {
     public function index(Request $request){
 
-        if($request->type_user == 'admin'){
+        if($request->type_user == 'administrator'){
             $rules = [
                 'id_admin' => 'required',
                 'password' => 'required|min:6'
@@ -33,8 +33,8 @@ class LoginController extends Controller
         
         $request->validate($rules);
 
-        if($request->type_user == 'admin'){
-            $admin = Admin::where('id_admin', $request->id_admin)->first();
+        if($request->type_user == 'administrator'){
+            $admin = Administrator::where('id_admin', $request->id_admin)->first();
 
             if(!Hash::check($request->password, $admin->password)){
                 return redirect()->back()->with('error', 'ID atau Password salah');
@@ -53,11 +53,11 @@ class LoginController extends Controller
             }
         }
 
-        if($request->type_user == 'admin'){
+        if($request->type_user == 'administrator'){
             session([
                 'id' => $admin->id,
                 'id_admin' => $admin->id_admin,
-                'type_user' => 'admin'
+                'type_user' => 'administrator'
             ]);
         }else if($request->type_user == 'siswa'){
             session([

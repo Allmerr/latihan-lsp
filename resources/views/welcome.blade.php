@@ -205,10 +205,10 @@
                         <form action="{{ route('login') }}" class="form-login" method="POST">
                             @csrf
                             <h2 class="text-center mb-2">Login Admin</h2>
-                            <input type="hidden" name="type_user" value="admin">
+                            <input type="hidden" name="type_user" value="administrator">
                             <div class="mb-3">
-                                <label for="id">ID Admin</label>
-                                <input type="text" name="id" class="form-control @error('id') error @enderror">
+                                <label for="id_admin">ID Admin</label>
+                                <input type="text" name="id_admin" class="form-control @error('id_admin') error @enderror">
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>
