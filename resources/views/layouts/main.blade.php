@@ -26,14 +26,19 @@
 @endforeach
 
 @if (session()->has('failed'))
-
     <script>
         const failed = '{{ session("failed") }}'
         alert(failed)
     </script>
-
-    
 @endif
+
+@if (session()->has('success'))
+    <script>
+        const success = '{{ session("success") }}'
+        alert(success)
+    </script>
+@endif
+
 
 </body>
 </html>

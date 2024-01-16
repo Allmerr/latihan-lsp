@@ -15,7 +15,7 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(session('type') === 'administrator' && session('type') === 'guru' && session('type') === 'siswa'){
+        if(session('type_user') === 'administrator' || session('type_user') === 'guru' || session('type_user') === 'siswa'){
             return $next($request);
         }
         abort(403);

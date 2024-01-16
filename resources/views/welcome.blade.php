@@ -2,30 +2,6 @@
 
 @push('css')
 <style>
-    .d-grid{
-        display: grid;
-    }
-
-    .d-grid--gtc46{
-        grid-template-columns: 4fr 6fr;
-    }
-
-    .d-flex{
-        display: flex;
-    }
-
-    .justify-content-right{
-        justify-content: right;
-    }
-
-    .align-items-center{
-        align-items: center;
-    }
-
-    .border-black{
-        border: solid 1px rgba(128, 128, 128, 0.418);
-    }
-
     .login-navs__list{
         width: 100%;
         gap: 5px;
@@ -40,23 +16,6 @@
         padding: 10px;
         background: #02A8A0;
         border-radius: 15px;
-
-    }
-
-    .width-100{
-        width: 100%;
-    }
-
-    .p3{
-        padding: 30px;
-    }
-
-    .p2{
-        padding: 20px;
-    }
-
-    .p1{
-        padding: 10px;
     }
 
     .login-page{
@@ -65,82 +24,20 @@
         height: 100%;
     }
 
-    .text-center{
-        text-align: center;
-    }
-
-    .rounded{
-        border-radius: 0.375rem;
-    }
-
     .login-navs__item-content{
         color: white;
         text-decoration: none;
     }
 
-    .img-thumbnail {
-        padding: 0.25rem;
-        background-color: #fff;
-        border: 1px solid #dee2e6;
-        border-radius: 0.375rem;
-        max-width: 100%;
-        height: auto;
-    }
-
-    .bg-white{
-        background: #fff;
-    }
-
-    .m1{
-        margin: 10px;
-    }
-
     .hello-page{
         color: white;
     }
-
-    .form-control{
-        display: block;
-        width: 100%;
-        padding: 0.375rem 0.75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-    }
-
+    
     .form-login{
         padding: 10px;
     }
 
-    .mb-2{
-        margin-bottom: 20px;
-    }
-
-    .mb-3{
-        margin-bottom: 20px;
-    }
-
-    .btn{
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        border-radius: 0.375rem;
-    }
-
-    .btn--primary{
-        color: white;
-        background: #02A8A0;
-    }
-
-    .d-none{
-        display: none;
-    }
-
-    .error{
-        color: red;
-        border: 1px solid red;
-    }
-
+    
 </style>
 @endpush
 
@@ -172,11 +69,11 @@
                             <input type="hidden" name="type_user" value="siswa">
                             <div class="mb-3">
                                 <label for="nis">NIS</label>
-                                <input type="text" name="nis" class="form-control @error('nis') error @enderror">
+                                <input type="text" name="nis" class="form-control @error('nis') error @enderror" required>
                             </div>
                             <div class="mb-3">
                                 <label for="passwprd">Password</label>
-                                <input type="password" name="password" class="form-control @error('password') error @enderror">
+                                <input type="password" name="password" class="form-control @error('password') error @enderror" required>
                             </div>
                             <div class="d-flex justify-content-right">
                                 <button class="btn btn--primary" type="submit">Login</button>
@@ -190,11 +87,11 @@
                             <input type="hidden" name="type_user" value="guru">
                             <div class="mb-3">
                                 <label for="id">NIP</label>
-                                <input type="text" name="nip" class="form-control @error('nip') error @enderror">
+                                <input type="text" name="nip" class="form-control @error('nip') error @enderror" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control @error('password') error @enderror">
+                                <input type="password" name="password" class="form-control @error('password') error @enderror" required>
                             </div>
                             <div class="d-flex justify-content-right">
                                 <button class="btn btn--primary" type="submit">Login</button>
@@ -208,11 +105,11 @@
                             <input type="hidden" name="type_user" value="administrator">
                             <div class="mb-3">
                                 <label for="id_admin">ID Admin</label>
-                                <input type="text" name="id_admin" class="form-control @error('id_admin') error @enderror">
+                                <input type="text" name="id_admin" class="form-control @error('id_admin') error @enderror" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control @error('password') error @enderror">
+                                <input type="password" name="password" class="form-control @error('password') error @enderror" required>
                             </div>
                             <div class="d-flex justify-content-right">
                                 <button class="btn btn--primary" type="submit">Login</button>

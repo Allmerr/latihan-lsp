@@ -10,7 +10,7 @@
             @if(session('id'))
                 @if(session('type_user') == 'administrator')
                 <li class="header__list-item">
-                    <a href="" class="header__list-content">Guru</a>
+                    <a href="{{ route('guru.index') }}" class="header__list-content">Guru</a>
                 </li>
                 <li class="header__list-item">
                     <a href="" class="header__list-content">Kelas</a>

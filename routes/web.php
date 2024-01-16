@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\GuruController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,6 @@ use App\Http\Controllers\Auth\LogoutController;
 |
 */
 
-
 Route::post('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('checkRole');
 
@@ -26,3 +26,5 @@ Route::get('/', function() {
 Route::get('/home', function() {
     return view('home');
 })->name('home');
+
+Route::resource('/guru', GuruController::class)->middleware('checkRole');
