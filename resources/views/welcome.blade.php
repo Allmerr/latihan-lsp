@@ -136,6 +136,11 @@
         display: none;
     }
 
+    .error{
+        color: red;
+        border: 1px solid red;
+    }
+
 </style>
 @endpush
 
@@ -167,11 +172,11 @@
                             <input type="hidden" name="type_user" value="siswa">
                             <div class="mb-3">
                                 <label for="nis">NIS</label>
-                                <input type="text" name="nis" class="form-control">
+                                <input type="text" name="nis" class="form-control @error('nis') error @enderror">
                             </div>
                             <div class="mb-3">
                                 <label for="passwprd">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control @error('password') error @enderror">
                             </div>
                             <div class="d-flex justify-content-right">
                                 <button class="btn btn--primary" type="submit">Login</button>
@@ -185,11 +190,11 @@
                             <input type="hidden" name="type_user" value="guru">
                             <div class="mb-3">
                                 <label for="id">NIP</label>
-                                <input type="text" name="nip" class="form-control">
+                                <input type="text" name="nip" class="form-control @error('nip') error @enderror">
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control @error('password') error @enderror">
                             </div>
                             <div class="d-flex justify-content-right">
                                 <button class="btn btn--primary" type="submit">Login</button>
@@ -203,11 +208,11 @@
                             <input type="hidden" name="type_user" value="admin">
                             <div class="mb-3">
                                 <label for="id">ID Admin</label>
-                                <input type="text" name="id" class="form-control">
+                                <input type="text" name="id" class="form-control @error('id') error @enderror">
                             </div>
                             <div class="mb-3">
                                 <label for="password">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control @error('password') error @enderror">
                             </div>
                             <div class="d-flex justify-content-right">
                                 <button class="btn btn--primary" type="submit">Login</button>

@@ -17,5 +17,23 @@
         @include('partials.footer')
     </div>
 @stack('js')
+
+@foreach($errors->all() as $error)
+    <script>
+        const error = '{{ $error }}'
+        alert(error)
+    </script>
+@endforeach
+
+@if (session()->has('failed'))
+
+    <script>
+        const failed = '{{ session("failed") }}'
+        alert(failed)
+    </script>
+
+    
+@endif
+
 </body>
 </html>

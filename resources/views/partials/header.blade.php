@@ -7,6 +7,14 @@
             <li class="header__list-item">
                 <a href="{{ route('welcome') }}" class="header__list-content">Home</a>
             </li>
+            @if(session('id'))
+            <li class="header__list-item">
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button class="header__list-content" type="submit">Logout</button>
+            </form>
+            </li>
+            @endif
         </ul>
     </div>
 </header>

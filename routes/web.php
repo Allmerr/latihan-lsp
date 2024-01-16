@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 Route::post('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
 
 Route::get('/', function() {
     return view('welcome');

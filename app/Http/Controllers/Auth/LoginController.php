@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Admin;
 use App\Models\Siswa;
 use App\Models\Guru;
@@ -15,7 +16,7 @@ class LoginController extends Controller
 
         if($request->type_user == 'admin'){
             $rules = [
-                'id' => 'required',
+                'id_admin' => 'required',
                 'password' => 'required|min:6'
             ];
         }else if($request->type_user == 'siswa'){
@@ -29,44 +30,52 @@ class LoginController extends Controller
                 'password' => 'required|min:6'
             ];
         }
-
-        $validatedData = $request->validate($rules);
+        
+        $request->validate($rules);
 
         if($request->type_user == 'admin'){
-            $admin = Admin::where('id', $request->id)->where('password', Hash::make($validatedData['password']))->first();
+            $admin = Admin::where('id_admin', $request->id_admin)->first();
 
-            if(!$admin){
+            if(!Hash::check($request->password, $admin->password)){
                 return redirect()->back()->with('error', 'ID atau Password salah');
             }
         }else if($request->type_user == 'siswa'){
-            $siswa = Siswa::where('nis', $request->nis)->where('password', Hash::make($validatedData['password']))->first();
+            $siswa = Siswa::where('nis', $request->nis)->first();
 
-            if(!$siswa){
+            if(!Hash::check($request->password, $siswa->password)){
                 return redirect()->back()->with('error', 'NIS atau Password salah');
             }
         }else if($request->type_user == 'guru'){
-            $guru = Guru::where('nip', $request->nip)->where('password', Hash::make($validatedData['password']))->first();
+            $guru = Guru::where('nip', $request->nip)->first();
 
-            if(!$guru){
+            if(!Hash::check($request->password, $guru->password)){
                 return redirect()->back()->with('error', 'NIP atau Password salah');
             }
         }
 
         if($request->type_user == 'admin'){
-            $request->session()->put('id', $admin->id);
-            $request->session()->put('nama', $admin->nama);
-            $request->session()->put('type_user', 'admin');
+            session([
+                'id' => $admin->id,
+                'id_admin' => $admin->id_admin,
+                'type_user' => 'admin'
+            ]);
         }else if($request->type_user == 'siswa'){
-            $request->session()->put('nis', $siswa->nis);
-            $request->session()->put('nama', $siswa->nama);
-            $request->session()->put('type_user', 'siswa');
+            session([
+                'id' => $siswa->id,
+                'nis' => $siswa->nis,
+                'nama_siswa' => $siswa->nama_siswa,
+                'type_user' => 'siswa'
+            ]);
         }else if($request->type_user == 'guru'){
-            $request->session()->put('nip', $guru->nip);
-            $request->session()->put('nama', $guru->nama);
-            $request->session()->put('type_user', 'guru');
+            session([
+                'id' => $guru->id,
+                'nip' => $guru->nip,
+                'nama_guru' => $guru->nama_guru,
+                'type_user' => 'guru'
+            ]);
         }
 
         return redirect()->route('home');
-
+        
     }
 }
