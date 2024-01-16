@@ -19,7 +19,7 @@
                     <a href="" class="header__list-content">Siswa</a>
                 </li>
                 <li class="header__list-item">
-                    <a href="" class="header__list-content">Mapel</a>
+                    <a href="{{ route('mapel.index') }}" class="header__list-content">Mapel</a>
                 </li>
                 <li class="header__list-item">
                     <a href="" class="header__list-content">Mengajar</a>

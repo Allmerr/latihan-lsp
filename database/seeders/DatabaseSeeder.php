@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Administrator::factory()->count(2)->create();
         \App\Models\Guru::factory()->count(10)->create();
         \App\Models\Siswa::factory()->count(100)->create();
+        \App\Models\Mapel::factory()->count(30)->create();
     }
 }

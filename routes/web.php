@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\MapelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,4 @@ Route::get('/home', function() {
 })->name('home');
 
 Route::resource('/guru', GuruController::class)->middleware('checkRole');
+Route::resource('/mapel', MapelController::class)->middleware('checkRole');
