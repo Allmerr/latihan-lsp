@@ -17,7 +17,7 @@ use App\Http\Controllers\Auth\LogoutController;
 
 
 Route::post('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/logout', [LogoutController::class, 'index'])->name('logout');
+Route::post('/logout', [LogoutController::class, 'index'])->name('logout')->middleware('checkRole');
 
 Route::get('/', function() {
     return view('welcome');
