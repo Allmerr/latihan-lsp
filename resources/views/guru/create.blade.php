@@ -24,7 +24,7 @@
             @csrf
             <div class="mb-3">
                 <label for="nip" class="text-left">NIP</label>
-                <input type="text" name="nip" class="form-control @error('nip') error @enderror" value="{{ old('nip') }}"> 
+                <input type="text" name="nip" class="form-control @error('nip') error @enderror" value="{{ old('nip') }}">
             </div>
             <div class="mb-3">
                 <label for="nama_guru" class="text-left">Nama Guru</label>
@@ -33,9 +33,9 @@
             <div class="mb-3">
                 <label for="jk" class="text-left">Jenis Kelamin</label>
                 <select name="jk" id="jk" class="form-control @error('jk') error @enderror">
-                    <option value="L" @if(old('jk') == 'L') checked @endif>Laki-Laki</option>    
-                    <option value="P" @if(old('jk') == 'P') checked @endif>Perempuan</option>    
-                </select> 
+                    <option value="L" @if(old('jk') == 'L') selected @endif>Laki-Laki</option>
+                    <option value="P" @if(old('jk') == 'P') selected @endif>Perempuan</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="alamat" class="text-left">alamat</label>
@@ -43,7 +43,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="text-left">password</label>
-                <input type="password" name="password" class="form-control @error('password') error @enderror"> 
+                <input type="password" name="password" class="form-control @error('password') error @enderror">
             </div>
             <div class="d-flex justify-content-right">
                 <button type="submit" class="btn btn--primary">Create</button>

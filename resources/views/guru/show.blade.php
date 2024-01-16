@@ -19,10 +19,8 @@
 @section('content')
 <div class="m2 form-guru-container text-white">
     <div class="form-guru rounded">
-        <h2 class="mt2 text-center">Ubah Guru</h2>
-        <form action="{{ route('guru.update',  $guru->nip) }}" method="POST">
-            @method('PUT')
-            @csrf
+        <h2 class="mt2 text-center">Create Guru</h2>
+        <form action="#" method="POST">
             <div class="mb-3">
                 <label for="nip" class="text-left">NIP</label>
                 <input type="text" name="nip" class="form-control @error('nip') error @enderror" value="{{ old('nip', $guru->nip) }}">
@@ -41,13 +39,6 @@
             <div class="mb-3">
                 <label for="alamat" class="text-left">alamat</label>
                 <input type="text" name="alamat" class="form-control @error('alamat') error @enderror" value="{{ old('alamat', $guru->alamat) }}">
-            </div>
-            <div class="mb-3">
-                <label for="password" class="text-left">password</label>
-                <input type="password" name="password" class="form-control @error('password') error @enderror" value="{{ old('password') }}">
-            </div>
-            <div class="d-flex justify-content-right">
-                <button type="submit" class="btn btn--primary">Create</button>
             </div>
         </form>
     </div>

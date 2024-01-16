@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class GuruController extends Controller
 {
@@ -40,7 +41,13 @@ class GuruController extends Controller
             'password' => 'required',
         ]);
 
-        Guru::create($request->all());
+        Guru::create([
+                'nip' => $request->nip,
+                'nama_guru' => $request->nama_guru,
+                'jk' => $request->jk,
+                'alamat' => $request->alamat,
+                'password' => Hash::make($request->password),
+            ]);
 
         return redirect()->route('guru.index')->with('success', 'Berhasil Menambah Guru');
     }
@@ -50,7 +57,9 @@ class GuruController extends Controller
      */
     public function show(Guru $guru)
     {
-        //
+        return view('guru.show', [
+            'guru' => $guru,
+        ]);
     }
 
     /**
@@ -58,7 +67,9 @@ class GuruController extends Controller
      */
     public function edit(Guru $guru)
     {
-        //
+        return view('guru.edit', [
+            'guru' => $guru,
+        ]);
     }
 
     /**
@@ -66,7 +77,23 @@ class GuruController extends Controller
      */
     public function update(Request $request, Guru $guru)
     {
-        //
+        $request->validate([
+            'nip' => 'required|unique:gurus,nip,' . $guru->id,
+            'nama_guru' => 'required',
+            'jk' => 'required|in:L,P',
+            'alamat' => 'required',
+            'password' => 'nullable',
+        ]);
+
+        $guru->update([
+            'nip' => $request->nip,
+            'nama_guru' => $request->nama_guru,
+            'jk' => $request->jk,
+            'alamat' => $request->alamat,
+            'password' => $request->password ? Hash::make($request->password) : $guru->password,
+        ]);
+
+        return redirect()->route('guru.index')->with('success', 'Berhasil Mengubah Guru');
     }
 
     /**
@@ -74,6 +101,9 @@ class GuruController extends Controller
      */
     public function destroy(Guru $guru)
     {
-        //
+        $guru->delete();
+
+        return redirect()->route('guru.index')->with('success', 'Berhasil Menghapus Guru');
+
     }
 }
