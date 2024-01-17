@@ -4,20 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Nilai extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    public function guru(){
-        return $this->belongsTo(Guru::class);
+    protected $guarded = ['id'];
+
+    public function mengajar(){
+        return $this->belongsTo(Mengajar::class);
     }
 
-    public function mapel(){
-        return $this->belongsTo(Mapel::class);
-    }
-
-    public function kelas(){
-        return $this->belongsTo(Kelas::class);
+    public function siswa(){
+        return $this->belongsTo(Siswa::class);
     }
 }

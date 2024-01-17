@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('nilais', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Mengajar::class);
-            $table->foreignIdFor(Siswa::class);
+            $table->unsignedBigInteger('mengajar_id');
+            $table->foreign('mengajar_id')->references('id')->on('mengajars');
+            $table->unsignedBigInteger('siswa_id');
+            $table->foreign('siswa_id')->references('id')->on('siswas');
             $table->double('uh');
             $table->double('uts');
             $table->double('uas');

@@ -32,7 +32,7 @@ class MengajarFactory extends Factory
         return [
             'guru_id' => $guru_id,
             'mapel_id' => $mapel_id,
-            'kelas_id' => $kelas_id',
+            'kelas_id' => $kelas_id,
         ];
     }
 }

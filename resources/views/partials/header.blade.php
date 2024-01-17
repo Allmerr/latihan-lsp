@@ -26,7 +26,7 @@
                 </li>
                 @else
                 <li class="header__list-item">
-                    <a href="" class="header__list-content">Nilai</a>
+                    <a href="{{ route('nilai.index') }}" class="header__list-content">Nilai</a>
                 </li>
                 @endif
                 <li class="header__list-item">
