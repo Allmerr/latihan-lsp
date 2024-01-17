@@ -22,11 +22,11 @@
                     <a href="{{ route('mapel.index') }}" class="header__list-content">Mapel</a>
                 </li>
                 <li class="header__list-item">
-                    <a href="" class="header__list-content">Mengajar</a>
+                    <a href="{{ route('mengajar.index' )}}" class="header__list-content">Mengajar</a>
                 </li>
                 @else
                 <li class="header__list-item">
-                    <a href="" class="header__list-content">Mengajar</a>
+                    <a href="" class="header__list-content">Nilai</a>
                 </li>
                 @endif
                 <li class="header__list-item">

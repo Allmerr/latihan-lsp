@@ -7,6 +7,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\MapelController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\MengajarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,4 @@ Route::resource('/guru', GuruController::class)->middleware('checkRole');
 Route::resource('/mapel', MapelController::class)->middleware('checkRole');
 Route::resource('/kelas', KelasController::class)->middleware('checkRole');
 Route::resource('/siswa', SiswaController::class)->middleware('checkRole');
+Route::resource('/mengajar', MengajarController::class)->middleware('checkRole');
