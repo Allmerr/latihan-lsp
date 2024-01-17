@@ -13,13 +13,16 @@ class NilaiController extends Controller
     public function index(){
         if(session('type_user') === 'guru'){
             $mengajars = Mengajar::where('guru_id', session('id'))->get();
-            
+
             return view('nilai.menu', [
                 'mengajars' => $mengajars,
             ]);
-            
-        }else if(session('type_user') === 'siswa'){
 
+        }else if(session('type_user') === 'siswa'){
+            $nilais = Nilai::where('siswa_id', session('id'))->get();
+            return view('nilai.siswa.index', [
+                'nilais' => $nilais,
+            ]);
         }else{
             abort(403);
         }
@@ -47,7 +50,7 @@ class NilaiController extends Controller
     public function kelasCreate(Request $request, $id_mengajar)  {
 
         $mengajar = Mengajar::where('id', $id_mengajar)->first();
-        
+
         if(session('type_user')  !== 'guru' && session('id')  !== $mengajar->guru_id){
             abort(403);
         }
@@ -64,7 +67,7 @@ class NilaiController extends Controller
     public function kelasStore(Request $request, $id_mengajar){
 
         $mengajar = Mengajar::where('id', $id_mengajar)->first();
-        
+
         if(session('type_user')  !== 'guru' && session('id')  !== $mengajar->guru_id){
             abort(403);
         }
@@ -90,13 +93,13 @@ class NilaiController extends Controller
             'na' => $request->na,
         ]);
 
-        return redirect()->route('nilai.kelas_index', $mengajar->id)->with('success', 'Berhasil Memberi Nilai Siswa');   
+        return redirect()->route('nilai.kelas_index', $mengajar->id)->with('success', 'Berhasil Memberi Nilai Siswa');
     }
 
     public function kelasShow(Request $request, $id_mengajar, $id_nilai){
         $nilai = Nilai::where('id', $id_nilai)->first();
         $mengajar = Mengajar::where('id', $id_mengajar)->first();
-        
+
         if(session('type_user')  !== 'guru' && session('id')  !== $mengajar->guru_id){
             abort(403);
         }
@@ -109,5 +112,67 @@ class NilaiController extends Controller
             'mengajar' => $mengajar,
         ]);
 
+    }
+
+    public function kelasDestroy(Request $request, $id_mengajar, $id_nilai){
+        $nilai = Nilai::where('id', $id_nilai)->first();
+        $mengajar = Mengajar::where('id', $id_mengajar)->first();
+
+        if(session('type_user')  !== 'guru' && session('id')  !== $mengajar->guru_id){
+            abort(403);
+        }
+
+        $nilai->delete();
+
+        return redirect()->route('nilai.kelas_index', $mengajar->id)->with('success', 'Berhasil Menghapus Nilai Siswa');
+    }
+
+    public function kelasEdit(Request $request, $id_mengajar, $id_nilai){
+        $nilai = Nilai::where('id', $id_nilai)->first();
+        $mengajar = Mengajar::where('id', $id_mengajar)->first();
+
+        if(session('type_user')  !== 'guru' && session('id')  !== $mengajar->guru_id){
+            abort(403);
+        }
+
+        $siswas = Siswa::where('kelas_id', $mengajar->kelas_id)->get();
+
+        return view('nilai.kelas.edit', [
+            'siswas' => $siswas,
+            'nilai' => $nilai,
+            'mengajar' => $mengajar,
+        ]);
+    }
+
+    public function kelasUpdate(Request $request, $id_mengajar, $id_nilai){
+        $nilai = Nilai::where('id', $id_nilai)->first();
+        $mengajar = Mengajar::where('id', $id_mengajar)->first();
+
+        if(session('type_user')  !== 'guru' && session('id')  !== $mengajar->guru_id){
+            abort(403);
+        }
+
+        if($nilai->siswa_id != $request->siswa_id && Nilai::where('siswa_id', $request->siswa_id)->exists()){
+            return redirect()->back()->with('failed', 'Sudah memberi nilai');
+        }
+
+        $request->validate([
+            'siswa_id' => 'required',
+            'uh' => 'required',
+            'uts' => 'required',
+            'uas' => 'required',
+            'na' => 'required',
+        ]);
+
+        $nilai->update([
+            'mengajar_id' => $id_mengajar,
+            'siswa_id' => $request->siswa_id,
+            'uh' => $request->uh,
+            'uts' => $request->uts,
+            'uas' => $request->uas,
+            'na' => $request->na,
+        ]);
+
+        return redirect()->route('nilai.kelas_index', $mengajar->id)->with('success', 'Berhasil Mengubah Nilai Siswa');
     }
 }

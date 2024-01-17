@@ -24,31 +24,23 @@
             @csrf
             <div class="mb-3">
                 <label for="siswa_id" class="text-left">Siswa</label>
-                <select name="siswa_id" id="siswa_id" class="form-control @error('siswa_id') error @enderror">
-                    @dd($nilai)
-                    @foreach($siswas as $siswa)
-                    <option value="{{ $siswa->id }}" @if(old('siswa_id', $nilai->siswa_id) == $siswa->id) selected @endif required>{{ $siswa->nama_siswa}}</option>
-                    @endforeach
-                </select>
+                <input type="text" name="siswa_id" class="form-control @error('siswa_id') error @enderror" value="{{  $nilai->siswa->nama_siswa }}" readonly>
             </div>
             <div class="mb-3">
                 <label for="uh" class="text-left">UH</label>
-                <input type="number" name="uh" class="form-control @error('uh') error @enderror" value="{{ old('uh') }}">
+                <input type="number" name="uh" class="form-control @error('uh') error @enderror" value="{{ old('uh', $nilai->uh) }}" readonly>
             </div>
             <div class="mb-3">
                 <label for="uts" class="text-left">UTS</label>
-                <input type="number" name="uts" class="form-control @error('uts') error @enderror" value="{{ old('uts') }}">
+                <input type="number" name="uts" class="form-control @error('uts') error @enderror" value="{{ old('uts', $nilai->uts) }}" readonly>
             </div>
             <div class="mb-3">
                 <label for="uas" class="text-left">UAS</label>
-                <input type="number" name="uas" class="form-control @error('uas') error @enderror" value="{{ old('uas') }}">
+                <input type="number" name="uas" class="form-control @error('uas') error @enderror" value="{{ old('uas', $nilai->uas) }}" readonly>
             </div>
             <div class="mb-3">
                 <label for="na" class="text-left">NA</label>
-                <input type="number" name="na" class="form-control @error('na') error @enderror" value="{{ old('na') }}">
-            </div>
-            <div class="d-flex justify-content-right">
-                <button type="submit" class="btn btn--primary">Create</button>
+                <input type="number" name="na" class="form-control @error('na') error @enderror" value="{{ old('na', $nilai->na) }}" readonly>
             </div>
         </form>
     </div>

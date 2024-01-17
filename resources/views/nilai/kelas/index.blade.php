@@ -26,9 +26,13 @@
                 <td>{{ $key+1 }}</td>
                 <td>{{ $nilai->siswa->nama_siswa }}</td>
                 <td>
-                    <a class="btn btn--warning" href="{{ route('nilai.kelas_show', ['mengajar' => $mengajar->id, 'nilai' => $nilai->id]) }}">Detail</a>
+                    <a class="btn btn--success" href="{{ route('nilai.kelas_show', ['mengajar' => $mengajar->id, 'nilai' => $nilai->id]) }}">Detail</a>
                     <a class="btn btn--warning" href="{{ route('nilai.kelas_edit', ['mengajar' => $mengajar->id, 'nilai' => $nilai->id]) }}">Ubah</a>
-                    <a class="btn btn--warning" href="{{ route('nilai.kelas_destroy', ['mengajar' => $mengajar->id, 'nilai' => $nilai->id]) }}">Hapus</a>
+                    <form action="{{ route('nilai.kelas_destroy', ['mengajar' => $mengajar->id, 'nilai' => $nilai->id]) }}" method="post" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn--danger">Hapus</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
