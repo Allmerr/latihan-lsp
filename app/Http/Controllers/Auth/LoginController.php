@@ -35,21 +35,25 @@ class LoginController extends Controller
 
         if($request->type_user == 'administrator'){
             $admin = Administrator::where('id_admin', $request->id_admin)->first();
+            
+            if($admin == null){
+                return redirect()->back()->with('failed', 'ID atau Password salah');
+            }
 
-            if(!Hash::check($request->password, $admin->password)){
-                return redirect()->back()->with('error', 'ID atau Password salah');
+            if( $admin == null || !Hash::check($request->password, $admin->password)){
+                return redirect()->back()->with('failed', 'ID atau Password salah');
             }
         }else if($request->type_user == 'siswa'){
             $siswa = Siswa::where('nis', $request->nis)->first();
 
-            if(!Hash::check($request->password, $siswa->password)){
-                return redirect()->back()->with('error', 'NIS atau Password salah');
+            if( $siswa == null || !Hash::check($request->password, $siswa->password)){
+                return redirect()->back()->with('failed', 'NIS atau Password salah');
             }
         }else if($request->type_user == 'guru'){
             $guru = Guru::where('nip', $request->nip)->first();
 
-            if(!Hash::check($request->password, $guru->password)){
-                return redirect()->back()->with('error', 'NIP atau Password salah');
+            if( $guru == null || !Hash::check($request->password, $guru->password)){
+                return redirect()->back()->with('failed', 'NIP atau Password salah');
             }
         }
 

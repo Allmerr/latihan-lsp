@@ -16,7 +16,7 @@
                     <a href="{{ route('kelas.index') }}" class="header__list-content">Kelas</a>
                 </li>
                 <li class="header__list-item">
-                    <a href="" class="header__list-content">Siswa</a>
+                    <a href="{{ route('siswa.index') }}" class="header__list-content">Siswa</a>
                 </li>
                 <li class="header__list-item">
                     <a href="{{ route('mapel.index') }}" class="header__list-content">Mapel</a>

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nama_siswa');
             $table->enum('jk', ['L', 'P']);
             $table->text('alamat');
-            $table->foreignIdFor(Kelas::class);
+            $table->unsignedBigInteger('kelas_id');
+            $table->foreign('kelas_id')->references('id')->on('kelas');
             $table->string('password');
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
